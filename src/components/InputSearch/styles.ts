@@ -9,8 +9,9 @@ export const Container = styled.div<ContainerProps>`
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: 500px;
 
-  margin: 10px 0 50px;
+  margin: 50px;
   padding: 0 20px;
   height: 60px;
 

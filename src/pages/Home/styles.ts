@@ -2,12 +2,11 @@ import styled from 'styled-components';
 import media from 'styled-media-query';
 
 export const Container = styled.div`
-  position: relative;
-
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
-  align-items: stretch;
-  padding: 30px 80px;
+  padding: 50px 0;
 
   > h1 {
     font-weight: bold;
@@ -37,12 +36,12 @@ export const Container = styled.div`
 
     width: 50%;
     height: 50px;
-    background: #5a92a5;
+    background: #0f6ac0;
     margin: 30px auto 0;
 
     outline: 0;
     border: 0;
-    border-radius: 4px;
+    border-radius: 8px;
     opacity: 0.8;
 
     transition: all linear 0.2s;
@@ -60,6 +59,7 @@ export const Container = styled.div`
 
 export const Pokemons = styled.div`
   flex: 1;
+  margin-top: 30px;
 
   display: grid;
   grid-template-columns: repeat(3, 1fr);

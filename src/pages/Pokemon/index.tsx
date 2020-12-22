@@ -18,7 +18,6 @@ import {
   Content,
   Header,
   PokemonLoader,
-  // PokemonCircle,
   PokemonNumber,
   PokemonName,
   PokemonType,
@@ -147,7 +146,6 @@ const Pokemon: React.FC = () => {
           >
             <span />
           </PokemonLoader>
-          {/* <PokemonCircle color={colors.backgroundType[backgroundColor]} /> */}
           <div>
             <PokemonNumber>{pokemon.number}</PokemonNumber>
             <PokemonName>{name}</PokemonName>

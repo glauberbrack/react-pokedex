@@ -21,19 +21,16 @@ const Home: React.FC = () => {
   const [pokemonSearch, setPokemonSearch] = useState('');
   const [pokemonsOffsetApi, setPokemonsOffsetApi] = useState(NUMBER_POKEMONS);
 
-  // Filtra os pokémons a partir da string digita no input de busca
   const handleSearchPokemons = useCallback(async () => {
     const response = await api.get(`/pokemon?limit=${NUMBER_MAX_POKEMONS_API}`);
 
     setPokemonSearch(pokemonSearch.toLocaleLowerCase());
-    // Valida nomes dos pokémons constam no valor da variável pokemonSearch
     const pokemonsSearch = response.data.results.filter(
       ({ name }: PokemonProps) => name.includes(pokemonSearch),
     );
     setPokemons(pokemonsSearch);
   }, [pokemonSearch]);
 
-  // Carrega uma lista inicial de pokémons
   const handlePokemonsListDefault = useCallback(async () => {
     const response = await api.get('/pokemon', {
       params: {
@@ -44,14 +41,12 @@ const Home: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    // A busca é só feita quando a string tiver 2 ou mais caracteres
     const isSearch = pokemonSearch.length >= 2;
 
     if (isSearch) handleSearchPokemons();
     else handlePokemonsListDefault();
   }, [pokemonSearch, handlePokemonsListDefault, handleSearchPokemons]);
 
-  // Adiciona novos pokémons a lista
   const handleMorePokemons = useCallback(
     async offset => {
       const response = await api.get(`/pokemon`, {
@@ -74,19 +69,25 @@ const Home: React.FC = () => {
 
       <InputSearch value={pokemonSearch} onChange={setPokemonSearch} />
 
-      <Pokemons>
-        {pokemons.map(pokemon => (
-          <CardPokemon key={pokemon.name} name={pokemon.name} />
-        ))}
-      </Pokemons>
+      {pokemons.length === 0 ? (
+        <div>Ops... looks like there is no pokemon with this name</div>
+      ) : (
+        <>
+          <Pokemons>
+            {pokemons.map(pokemon => (
+              <CardPokemon key={pokemon.name} name={pokemon.name} />
+            ))}
+          </Pokemons>
 
-      {pokemonSearch.length <= 2 && (
-        <button
-          type="button"
-          onClick={() => handleMorePokemons(pokemonsOffsetApi)}
-        >
-          CARREGAR MAIS
-        </button>
+          {pokemonSearch.length <= 2 && (
+            <button
+              type="button"
+              onClick={() => handleMorePokemons(pokemonsOffsetApi)}
+            >
+              LOAD MORE
+            </button>
+          )}
+        </>
       )}
     </Container>
   );

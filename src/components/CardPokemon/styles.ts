@@ -10,6 +10,7 @@ export const Container = styled(Link)<BoxProps>`
 
   display: flex;
   height: 180px;
+  min-width: 300px;
   width: inherit;
 
   border-radius: 6px;
@@ -23,8 +24,8 @@ export const Container = styled(Link)<BoxProps>`
     right: 0px;
     top: -50px;
     z-index: 10;
-    height: 210px;
-    width: 210px;
+    height: 110px;
+    width: 110px;
 
     filter: grayscale(100%);
     -webkit-transition: -webkit-filter 400ms ease;
